@@ -1,0 +1,171 @@
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 104px;
+  min-width: 320px;
+  z-index: 11;
+  transition: all 0.2s;
+  background-color: #fafbfc;
+  box-shadow: 0px 0px 20px 0px #dee0e2;
+}
+.container {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left {
+  width: 150px;
+  height: 150px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.center {
+  width: 45%;
+  height: 100%;
+}
+.center ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 90%;
+  padding: 0px;
+  margin: 0px;
+}
+.center ul li {
+  /* width: 20%;
+  margin: auto; */
+  text-decoration: none;
+  list-style-type: none;
+  position: relative;
+}
+.center ul li span {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 10%;
+  border-bottom: 2px double #8731b8;
+  transition: all 1s ease;
+}
+.center ul li:hover > span {
+  width: 100%;
+  transition: all 1s ease;
+}
+
+.center ul li a {
+  text-decoration: none;
+  color: #8731b8;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: 18px;
+  line-height: 1.5;
+  transition: all 0.5s ease;
+}
+.center ul li a:hover {
+  color: #8731b8;
+  transition: all 0.5s ease;
+}
+.right {
+  /* width: 30%; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.right h2 {
+  color: #8731b8;
+  margin: 0px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.right .button a {
+  width: 275px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  padding: 19px 22px;
+  border-width: 1px;
+  border-style: solid;
+  letter-spacing: 0.02em;
+  -webkit-transition: background 0.2s, border-color 0.2s,
+    -webkit-box-shadow 0.2s;
+  transition: background 0.2s, border-color 0.2s, -webkit-box-shadow 0.2s;
+  -o-transition: box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, background 0.2s, border-color 0.2s,
+    -webkit-box-shadow 0.2s;
+  color: #fff;
+  border-color: #8731b8;
+  background-color: #8731b8;
+}
+.right .button a:hover {
+  background-color: #fff;
+  color: #8731b8;
+}
+.right .activeBtn {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  text-align: center;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  padding: 10px 15px;
+  letter-spacing: 0.02em;
+  -webkit-transition: background 0.2s, border-color 0.2s,
+    -webkit-box-shadow 0.2s;
+  transition: background 0.2s, border-color 0.2s, -webkit-box-shadow 0.2s;
+  -o-transition: box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, background 0.2s, border-color 0.2s,
+    -webkit-box-shadow 0.2s;
+  background: #8731b8;
+  color: #fff;
+  border: 0px solid #8731b8;
+  margin-right: 15px;
+  outline: #8731b8;
+}
+.right .btn {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  text-align: center;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  padding: 10px 15px;
+  letter-spacing: 0.02em;
+  -webkit-transition: background 0.2s, border-color 0.2s,
+    -webkit-box-shadow 0.2s;
+  transition: background 0.2s, border-color 0.2s, -webkit-box-shadow 0.2s;
+  -o-transition: box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, background 0.2s, border-color 0.2s,
+    -webkit-box-shadow 0.2s;
+  background: #fff;
+  color: #8731b8;
+  border: 1px solid #8731b8;
+  margin-right: 15px;
+  outline: #8731b8;
+}
+@media screen and (max-width: 1250px) {
+  .main {
+    display: none;
+  }
+}
