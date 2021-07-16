@@ -1,5 +1,4 @@
 import api from "../API";
-import ApiFirebase from "../API/ApiFirebase";
 
 
 
@@ -83,24 +82,24 @@ export const fetchOrderProducts = () => async (dispatch) => {
 
 //CRUD OPERATIONS
 
-export const addProduct = (order, product) => async (dispatch) => {
-    const response = await ApiFirebase.post(`/${order}/add/`, product);
+export const addProduct = (name, product) => async (dispatch) => {
+    const response = await api.post(`/${name}/add/`, product);
     dispatch({
         type: "ADD_PRODUCT",
         payload: response.data,
     });
 };
 
-export const editProduct = (order, id, formValues) => async (dispatch) => {
-    const response = await ApiFirebase.post(`/${order}/edit/${id}/`, formValues);
+export const editProduct = (name, id, formValues) => async (dispatch) => {
+    const response = await api.post(`/${name}/edit/${id}/`, formValues);
     dispatch({
         type: "EDIT_PRODUCT",
         payload: response.data,
     });
 };
 
-export const deleteProduct = (order, id) => async (dispatch) => {
-    await ApiFirebase.delete(`/${order}/delete/${id}/`);
+export const deleteProduct = (name, id) => async (dispatch) => {
+    await api.delete(`/${name}/delete/${id}/`);
     dispatch({
         type: "DELETE_PRODUCT",
         payload: id,
