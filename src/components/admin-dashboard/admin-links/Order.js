@@ -41,9 +41,7 @@ function Order(props) {
         } )
     }, [])
 
-    function  del  (id){
-        firebase.database().ref('orders').child(id).remove()
-    }
+
 
     console.log(dataOrder);
 
