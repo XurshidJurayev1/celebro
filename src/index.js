@@ -10,7 +10,6 @@ import reducers from "./reducer";
 import './I18Next'
 import Loading from "./components/Loading/Loader";
 
-// import App from './App'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));

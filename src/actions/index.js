@@ -1,5 +1,5 @@
 import api from "../API";
-
+import firebase from '../Config'
 
 
 //Select type of form action
@@ -98,14 +98,18 @@ export const editProduct = (name, id, formValues) => async (dispatch) => {
     });
 };
 
-export const deleteProduct = (name, id) => async (dispatch) => {
-    await api.delete(`/${name}/delete/${id}/`);
-    dispatch({
-        type: "DELETE_PRODUCT",
-        payload: id,
-    });
+export const deleteProduct = (name, id) =>  {
+    // await api.delete(`/${name}/delete/${id}/`);
+    // dispatch({
+    //     type: "DELETE_PRODUCT",
+    //     payload: id,
+    // });
+    firebase.database().ref(`${name}`).child(id).remove();
 };
-
+export const firebase_db = firebase.database().ref();
+export function deleteData(key) {
+    return dispatch => firebase_db.child('key').remove()
+  }
 
 
 

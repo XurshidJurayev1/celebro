@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import style from './GrantDelete.module.css'
-import { deleteProduct } from '../../../actions'
+import { deleteData } from '../../../actions'
 import { connect } from 'react-redux'
 import NotFound from '../main-parts/404'
+
+
+
 
 function OrderDelete(props) {
     if (!props.admin) {
@@ -11,8 +14,9 @@ function OrderDelete(props) {
             <NotFound />
         )
     }
-    const del = () => {
-        props.deleteProduct('orders', props.item.id)
+    const del = (id) => {
+        props.deleteData( props.item.id)
+        
     }
     return (
         <div className={style.main}>
@@ -33,4 +37,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { deleteProduct })(OrderDelete)
+export default connect(mapStateToProps, { deleteData })(OrderDelete)

@@ -30,10 +30,20 @@ function Order(props) {
             }
             
             setDataOrder(orderList)
+            firebase.database().ref('orders').on('child_removed',snap => {
+                for (var i=0; i < orderList.length; i++){
+                    if(orderList[i].id === snap.key){
+                        orderList.splice(i,1)
+                    }
+                }
+                setDataOrder(orderList)
+            })
         } )
     }, [])
 
-
+    function  del  (id){
+        firebase.database().ref('orders').child(id).remove()
+    }
 
     console.log(dataOrder);
 
@@ -42,7 +52,7 @@ function Order(props) {
             return (
                 dataOrder
                     ? dataOrder.map((order, id) => order.serviceType.toLowerCase().includes(name.toLowerCase()) && (
-                        <div key={order.id} className={style.tableDetail}>
+                        <div key={id} className={style.tableDetail}>
                             <h2>{id + 1}</h2>
 
                             <Fragment key={order.id}>
