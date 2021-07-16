@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import LoaderComponent from '../main-parts/Loader'
 import firebase from '../../../Config'
-import axios from 'axios'
+// import axios from 'axios'
 
 
 
