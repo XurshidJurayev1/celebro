@@ -4,25 +4,46 @@ import { fetchOrderProducts, selectedAnyItem, ReadOrder } from '../../../actions
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import LoaderComponent from '../main-parts/Loader'
+import firebase from '../../../Config'
+import axios from 'axios'
+
 
 
 function Order(props) {
     const [name, setName] = useState('')
+    const [dataOrder, setDataOrder] = useState([])
 
+
+    // useEffect(() => async () => {
+    //     const response = await axios.get('https://data-celebro-default-rtdb.firebaseio.com/orders')
+    //     setDataOrder(response.data)
+    //     console.log(response);
+
+    // }, [])
     useEffect(() => {
-        props.fetchOrderProducts()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        const orderRef = firebase.database().ref('orders')
+        orderRef.on('value', (snapshot) =>{
+            const orders = snapshot.val()
+            const orderList = []
+            for(let id in orders){
+                orderList.push(orders[id])
+            }
+            
+            setDataOrder(orderList)
+        } )
     }, [])
 
 
 
+    console.log(dataOrder);
+
     const listRender = () => {
-        if (name.length > 0) {
+        // if (name.length > 0) {
             return (
-                props.orders
-                    ? props.orders.map((order, id) => order.serviceType.toLowerCase().includes(name.toLowerCase()) && (
+                dataOrder
+                    ? dataOrder.map((order, id) => order.serviceType.toLowerCase().includes(name.toLowerCase()) && (
                         <div key={order.id} className={style.tableDetail}>
-                            <h2>{id}</h2>
+                            <h2>{id + 1}</h2>
 
                             <Fragment key={order.id}>
                                 <h2>{order.serviceType}</h2>
@@ -41,37 +62,37 @@ function Order(props) {
                     : <LoaderComponent />
 
             )
-        } else {
-            return (
-                props.orders
-                    ? props.orders.map((order, id) => {
-                        if (order.id) {
-                            return (
-                                < div key={order.id} className={style.tableDetail} >
-                                    <h2>{id}</h2>
-                                    <Fragment key={order.id}>
-                                        <h2>{order.serviceType}</h2>
-                                        <h2>{order.number}</h2>
-                                        <h2>{order.date}</h2>
-                                    </Fragment>
-                                    <div className={style.twoButtons}>
-                                        {props.admin.orderPermission === 'TRUE' && <Link to='/admin/delete/orders' onClick={() => props.selectedAnyItem(order)}>Delete</Link>}
-                                        {props.admin.orderPermission === 'TRUE' && <Link to='/admin/read/orders' onClick={() => props.ReadOrder(order)}> Read</Link>}
-                                        {props.admin.orderPermission === 'TRUE' && <Link to='/admin/edit/orders' onClick={() => props.selectedAnyItem(order)}> Edit</Link>}
-                                    </div>
-                                </div >
-                            )
-                        } else {
-                            return (
-                                <h1 style={{ position: 'absolute' }}>No Students yet</h1>
-                            )
-                        }
-                    })
-                    : <LoaderComponent />
+        // } else {
+        //     return (
+        //         dataOrder
+        //             ? dataOrder.map((order, id) => {
+        //                 if (order.id) {
+        //                     return (
+        //                         < div key={order.id} className={style.tableDetail} >
+        //                             <h2>{id}</h2>
+        //                             <Fragment key={order.id}>
+        //                                 <h2>{order.serviceType}</h2>
+        //                                 <h2>{order.number}</h2>
+        //                                 <h2>{order.date}</h2>
+        //                             </Fragment>
+        //                             <div className={style.twoButtons}>
+        //                                 {props.admin.orderPermission === 'TRUE' && <Link to='/admin/delete/orders' onClick={() => props.selectedAnyItem(order)}>Delete</Link>}
+        //                                 {props.admin.orderPermission === 'TRUE' && <Link to='/admin/read/orders' onClick={() => props.ReadOrder(order)}> Read</Link>}
+        //                                 {props.admin.orderPermission === 'TRUE' && <Link to='/admin/edit/orders' onClick={() => props.selectedAnyItem(order)}> Edit</Link>}
+        //                             </div>
+        //                         </div >
+        //                     )
+        //                 } else {
+        //                     return (
+        //                         <h1 style={{ position: 'absolute' }}>No orders yet</h1>
+        //                     )
+        //                 }
+        //             })
+        //             : <LoaderComponent />
 
 
-            )
-        }
+        //     )
+        // }
     }
 
 

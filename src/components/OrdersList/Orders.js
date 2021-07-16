@@ -45,7 +45,7 @@ const Orders = (props) => {
             for(let id in orders){
                 orderList.push(orders[id])
             }
-            console.log(orderList);
+            
             setDataOrder(orderList)
         } )
     }, [])
@@ -62,7 +62,7 @@ const Orders = (props) => {
         })
         setNumber('')
     }
-    console.log(state);
+                        
 
     return (
         <div className={style.main}>
