@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import style from "./Login.module.css";
-import { fetchAdminsProducts, CurentAdmin } from "../../../actions";
-import { connect } from "react-redux";
-import image from "../../../assets/images/lock.jpg";
+import React, { useEffect, useState } from 'react';
+import style from './Login.module.css';
+import { fetchAdminsProducts, CurentAdmin } from '../../../actions';
+import { connect } from 'react-redux';
+import image from '../../../assets/images/lock.jpg';
 
 function Login(props) {
   useEffect(() => {
@@ -12,85 +12,52 @@ function Login(props) {
 
   const [checker, setChecker] = useState(false);
   const [emptyInput, setEmptyInput] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [keyword, setKeyword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [keyword, setKeyword] = useState('');
 
   const submitted = (e) => {
     e.preventDefault();
 
     // const admin = props.admins.filter((admin) => admin.name.includes(username));
 
-    if(
-          username === "admin" &&
-          password === "Frontend8640" &&
-          keyword === "hh"
-        ) {
-          props.login(true);
-          setChecker(false);
-          props.CurentAdmin({
-            name: "admin",
-            password: "Frontend8640",
-            adminsPermission: "TRUE",
-            imagePermission: "TRUE",
-            messagesPermission: "TRUE",
-            newsPermission: "TRUE",
-            quotasPermission: "TRUE",
-            studentsPermission: "TRUE",
-            vacancysPermission: "TRUE",
-          });
-        } else {
-          offChecker();
-          props.login(false);
-          setChecker(true);
-          setUsername("");
-          setPassword("");
-          setKeyword("");
-          
-        }
-
-  //   if (admin[0] && keyword === "lion") {
-  //     if (admin[0].password === password) {
-  //       props.login(true);
-  //       setChecker(false);
-  //       props.CurentAdmin(admin[0]);
-  //     } else if (username === "" && password === "") {
-  //       setEmptyInput(true);
-  //       offChecker();
-  //     } else {
-  //       offChecker();
-  //       props.login(false);
-  //       setChecker(true);
-  //       setUsername("");
-  //       setKeyword("");
-  //       setPassword("");
-  //     }
-  //   } else if (
-  //     username === "admin" &&
-  //     password === "Frontend8640" &&
-  //     keyword === "hbbh"
-  //   ) {
-  //     props.login(true);
-  //     setChecker(false);
-  //     props.CurentAdmin({
-  //       name: "admin",
-  //       password: "Frontend8640",
-  //       adminsPermission: "TRUE",
-  //       imagePermission: "TRUE",
-  //       messagesPermission: "TRUE",
-  //       newsPermission: "TRUE",
-  //       quotasPermission: "TRUE",
-  //       studentsPermission: "TRUE",
-  //       vacancysPermission: "TRUE",
-  //     });
-  //   } else {
-  //     offChecker();
-  //     props.login(false);
-  //     setChecker(true);
-  //     setUsername("");
-  //     setPassword("");
-  //     setKeyword("");
-  //   }
+    if (admin[0] && keyword === "admin") {
+      if (admin[0].password === password) {
+        props.login(true);
+        setChecker(false);
+        props.CurentAdmin(admin[0]);
+      } else if (username === "" && password === "") {
+        setEmptyInput(true);
+        offChecker();
+      } else {
+        offChecker();
+        props.login(false);
+        setChecker(true);
+        setUsername("");
+        setKeyword("");
+        setPassword("");
+      }
+    } else if (
+      username === "admin" &&
+      password === "Frontend8640" &&
+      keyword === "hbbh"
+    ) {
+      props.login(true);
+      setChecker(false);
+      props.CurentAdmin({
+        name: "hbbh",
+        password: "Frontend8640",
+        adminsPermission: "TRUE",
+        orderPermission: "TRUE",
+      });
+    } else {
+      offChecker();
+      props.login(false);
+      setChecker(true);
+      setUsername("");
+      setPassword("");
+      setKeyword("");
+    }
   };
   const offChecker = () => {
     setTimeout(() => {
@@ -111,21 +78,21 @@ function Login(props) {
             <form onSubmit={submitted}>
               <h2>Log In</h2>
               <input
-                className={checker || emptyInput ? style.wrong : ""}
+                className={checker || emptyInput ? style.wrong : ''}
                 type="text"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
               <input
-                className={checker || emptyInput ? style.wrong : ""}
+                className={checker || emptyInput ? style.wrong : ''}
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <input
-                className={checker || emptyInput ? style.wrong : ""}
+                className={checker || emptyInput ? style.wrong : ''}
                 type="password"
                 placeholder="Key word"
                 value={keyword}
@@ -145,6 +112,7 @@ function Login(props) {
     </section>
   );
 }
+
 const mapStateToProps = (state) => {
   return {
     admins: state.productsAdmins[0],
@@ -152,5 +120,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { fetchAdminsProducts, CurentAdmin })(
-  Login
+  Login,
 );
