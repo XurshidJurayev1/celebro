@@ -21,43 +21,78 @@ function Login(props) {
 
     // const admin = props.admins.filter((admin) => admin.name.includes(username));
 
-    if (admin[0] && keyword === "admin") {
-      if (admin[0].password === password) {
-        props.login(true);
-        setChecker(false);
-        props.CurentAdmin(admin[0]);
-      } else if (username === "" && password === "") {
-        setEmptyInput(true);
-        offChecker();
-      } else {
-        offChecker();
-        props.login(false);
-        setChecker(true);
-        setUsername("");
-        setKeyword("");
-        setPassword("");
-      }
-    } else if (
-      username === "admin" &&
-      password === "Frontend8640" &&
-      keyword === "hbbh"
+    if (
+      username === 'admin' &&
+      password === 'Frontend8640' &&
+      keyword === 'hh'
     ) {
       props.login(true);
       setChecker(false);
       props.CurentAdmin({
-        name: "hbbh",
-        password: "Frontend8640",
-        adminsPermission: "TRUE",
-        orderPermission: "TRUE",
-      });
+        name: 'admin',
+        password: 'Frontend8640',
+        adminsPermission: 'TRUE',
+        imagePermission: 'TRUE',
+        messagesPermission: 'TRUE',
+        newsPermission: 'TRUE',
+        quotasPermission: 'TRUE',
+        studentsPermission: 'TRUE',
+        vacancysPermission: 'TRUE',
+        orderPermission: 'TRUE',
+      })
+      ;
     } else {
       offChecker();
       props.login(false);
       setChecker(true);
-      setUsername("");
-      setPassword("");
-      setKeyword("");
+      setUsername('');
+      setPassword('');
+      setKeyword('');
+
     }
+
+    //   if (admin[0] && keyword === "lion") {
+    //     if (admin[0].password === password) {
+    //       props.login(true);
+    //       setChecker(false);
+    //       props.CurentAdmin(admin[0]);
+    //     } else if (username === "" && password === "") {
+    //       setEmptyInput(true);
+    //       offChecker();
+    //     } else {
+    //       offChecker();
+    //       props.login(false);
+    //       setChecker(true);
+    //       setUsername("");
+    //       setKeyword("");
+    //       setPassword("");
+    //     }
+    //   } else if (
+    //     username === "admin" &&
+    //     password === "Frontend8640" &&
+    //     keyword === "hbbh"
+    //   ) {
+    //     props.login(true);
+    //     setChecker(false);
+    //     props.CurentAdmin({
+    //       name: "admin",
+    //       password: "Frontend8640",
+    //       adminsPermission: "TRUE",
+    //       imagePermission: "TRUE",
+    //       messagesPermission: "TRUE",
+    //       newsPermission: "TRUE",
+    //       quotasPermission: "TRUE",
+    //       studentsPermission: "TRUE",
+    //       vacancysPermission: "TRUE",
+    //     });
+    //   } else {
+    //     offChecker();
+    //     props.login(false);
+    //     setChecker(true);
+    //     setUsername("");
+    //     setPassword("");
+    //     setKeyword("");
+    //   }
   };
   const offChecker = () => {
     setTimeout(() => {
