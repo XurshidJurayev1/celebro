@@ -24,10 +24,9 @@ function Order(props) {
     const orderRef = firebase.database().ref('orders');
     orderRef.on('value', (snapshot) => {
       const orders = snapshot.val();
-      console.log(orders);
       const orderList = [];
       for (let id in orders) {
-        orderList.push(orders[id]);
+        orderList.push({ id, ...orders[id] });
       }
 
       setDataOrder(orderList);
@@ -42,9 +41,7 @@ function Order(props) {
     });
   }, []);
 
-  console.log(props);
 
-  console.log(dataOrder);
 
   const listRender = () => {
     // if (name.length > 0) {
