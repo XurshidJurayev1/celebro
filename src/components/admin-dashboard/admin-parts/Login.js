@@ -22,9 +22,9 @@ function Login(props) {
     // const admin = props.admins.filter((admin) => admin.name.includes(username));
 
     if (
-      username === 'admin' &&
-      password === 'Frontend8640' &&
-      keyword === 'hh'
+      username === 'CelebroPro' &&
+      password === 'celebropro21' &&
+      keyword === 'admin'
     ) {
       props.login(true);
       setChecker(false);
